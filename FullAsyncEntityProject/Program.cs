@@ -1,5 +1,6 @@
 ﻿using FullAsyncEntityProject.DataAccess;
 using FullAsyncEntityProject.DataAccess.Concrete.EntityFramework;
+using FullAsyncEntityProject.Entities;
 using FullAsyncEntityProject.Services.Concrete;
 
 namespace FullAsyncEntityProject
@@ -13,6 +14,16 @@ namespace FullAsyncEntityProject
                 var productDal = new EFProductDal(context);
                 var productService = new ProductService(productDal);
 
+                //var newEntity = new Product
+                //{
+                //    Name = "Asus Zenbook DUO",
+                //    Description = "Ela chox monitorlu laptop",
+                //    Price = 4200,
+                //    Quantity = 20
+                //};
+
+                //await productService.AddAsync(newEntity);
+
                 var products = await productService.GetListAsync();
                 foreach (var p in products)
                 {
@@ -21,6 +32,7 @@ namespace FullAsyncEntityProject
                     Console.WriteLine($"Description : {p.Description}");
                     Console.WriteLine($"Price : {p.Price}$");
                     Console.WriteLine($"Quantity : {p.Quantity}");
+                    Console.WriteLine();
                 }
 
             }
